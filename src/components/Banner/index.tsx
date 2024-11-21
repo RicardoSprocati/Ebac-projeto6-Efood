@@ -1,10 +1,16 @@
 import { Banner, SpanCategoria, SpanTitulo } from './style'
 
-const BannerHeader = () => (
-  <Banner>
+export type Props = {
+  title: string
+  cover: string
+  type: string
+}
+
+const BannerHeader = ({ title, cover, type }: Props) => (
+  <Banner cover={cover}>
     <div className="container">
-      <SpanCategoria>Italiana</SpanCategoria>
-      <SpanTitulo>La Dolce Vita Trattoria</SpanTitulo>
+      <SpanCategoria>{type}</SpanCategoria>
+      <SpanTitulo>{title}</SpanTitulo>
     </div>
   </Banner>
 )

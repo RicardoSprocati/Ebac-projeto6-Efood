@@ -1,16 +1,16 @@
 import Card from '../Card'
 import { Body, Container } from './style'
-import Restaurant from '../../models/Restaurantes'
+
 import { useLocation } from 'react-router-dom'
 import CardMenu from '../CardMenu'
-import Menu from '../../models/Menu'
+import { Menu, Restaurant } from '../../Home'
 
 export type Props = {
   restaurants?: Restaurant[]
   menus?: Menu[]
 }
 
-const Cards = ({ restaurants, menus }: Props) => {
+const Cards = ({ restaurants = [], menus = [] }: Props) => {
   const location = useLocation()
 
   return (
@@ -20,21 +20,27 @@ const Cards = ({ restaurants, menus }: Props) => {
           ? restaurants.map((restaurant) => (
               <Card
                 key={restaurant.id}
-                title={restaurant.title}
-                description={restaurant.description}
-                assessment={restaurant.assessment}
-                image={restaurant.image}
-                infos={restaurant.infos}
+                title={restaurant.titulo}
+                description={restaurant.descricao}
+                assessment={restaurant.avaliacao}
+                cover={restaurant.capa}
+                typeFood={restaurant.tipo}
+                highlights={restaurant.destacado}
+                id={restaurant.id}
               />
             ))
-          : menus
-          ? menus.map(({ image, id, title, description }) => (
-              <CardMenu
-                key={id}
-                title={title}
-                image={image}
-                description={description}
-              />
+          : menus?.length
+          ? menus.map((menu: Menu) => (
+              <li key={menu.id}>
+                <CardMenu
+                  name={menu.nome}
+                  image={menu.foto}
+                  descriptionMenu={menu.descricao}
+                  price={menu.preco}
+                  portion={menu.porcao}
+                  id={menu.id}
+                />
+              </li>
             ))
           : null}
       </Container>

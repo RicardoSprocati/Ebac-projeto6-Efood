@@ -1,10 +1,9 @@
 import styled from 'styled-components'
 
-import bannerTrattoria from '../../assets/images/Fundo-trattoria.svg'
 import { Cores } from '../../GlobalStyles'
 
-export const Banner = styled.div`
-  background-image: url(${bannerTrattoria});
+export const Banner = styled.div<{ cover: string }>`
+  background-image: url(${(props) => props.cover});
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;

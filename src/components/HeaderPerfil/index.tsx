@@ -7,7 +7,9 @@ import cart from '../../assets/images/shopping-cart.svg'
 const HeaderPerfil = () => (
   <PerfilHeader>
     <div className="container">
-      <Button to="/">Restaurantes</Button>
+      <Button type="link" to="/">
+        Restaurantes
+      </Button>
       <img src={logo} alt="logo" />
       <LinkCart>
         0 - produto(s)

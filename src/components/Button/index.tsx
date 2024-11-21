@@ -1,12 +1,18 @@
-import { ButtonLink } from './style'
+import { ButtonLink, ButtonSubmit } from './style'
 
 type Props = {
-  to: string
+  to?: string
   children: string
+  type: 'button' | 'link'
+  onClick?: () => void
 }
 
-const Button = ({ to, children }: Props) => {
-  return <ButtonLink to={to}>{children}</ButtonLink>
+const Button = ({ to, children, type, onClick }: Props) => {
+  if (type === 'button') {
+    return <ButtonSubmit onClick={onClick}>{children}</ButtonSubmit>
+  }
+
+  return <ButtonLink to={to as string}>{children}</ButtonLink>
 }
 
 export default Button
