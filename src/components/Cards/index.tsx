@@ -8,14 +8,22 @@ import { Menu, Restaurant } from '../../Home'
 export type Props = {
   restaurants?: Restaurant[]
   menus?: Menu[]
+  id?: string
 }
 
-const Cards = ({ restaurants = [], menus = [] }: Props) => {
+export const formataPreco = (preco = 0) => {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(preco)
+}
+
+const Cards = ({ restaurants = [], menus = [], id }: Props) => {
   const location = useLocation()
 
   return (
     <Body>
-      <Container isHome={location.pathname === '/'}>
+      <Container id={id} isHome={location.pathname === '/'}>
         {location.pathname === '/' && restaurants
           ? restaurants.map((restaurant) => (
               <Card
@@ -32,14 +40,7 @@ const Cards = ({ restaurants = [], menus = [] }: Props) => {
           : menus?.length
           ? menus.map((menu: Menu) => (
               <li key={menu.id}>
-                <CardMenu
-                  name={menu.nome}
-                  image={menu.foto}
-                  descriptionMenu={menu.descricao}
-                  price={menu.preco}
-                  portion={menu.porcao}
-                  id={menu.id}
-                />
+                <CardMenu items={menu} />
               </li>
             ))
           : null}

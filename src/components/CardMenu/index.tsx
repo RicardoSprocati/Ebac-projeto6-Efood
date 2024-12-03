@@ -11,17 +11,16 @@ import {
 
 import close from '../../assets/images/close.svg'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { add, open } from '../store/reducers/cart'
+import { Menu } from '../../Home'
+import { formataPreco } from '../Cards'
 
 type Props = {
-  name: string
-  image: string
-  descriptionMenu: string
-  price: number
-  portion: string
-  id: number
+  items: Menu
 }
 
-const CardMenu = ({ name, image, descriptionMenu, price, portion }: Props) => {
+const CardMenu = ({ items }: Props) => {
   const [modal, setModal] = useState({ isVisible: false })
   const [descriptionExpanded, setDescriptionExpanded] = useState(false)
 
@@ -30,10 +29,10 @@ const CardMenu = ({ name, image, descriptionMenu, price, portion }: Props) => {
   }
 
   const getDescription = () => {
-    if (!descriptionExpanded && descriptionMenu.length > 243) {
+    if (!descriptionExpanded && items.descricao.length > 243) {
       return (
         <>
-          {descriptionMenu.slice(0, 243)}...{''}
+          {items.descricao.slice(0, 243)}...{''}
           <LerMais type="button" onClick={toggleDescription}>
             Ler mais
           </LerMais>
@@ -42,7 +41,7 @@ const CardMenu = ({ name, image, descriptionMenu, price, portion }: Props) => {
     }
     return (
       <>
-        {descriptionMenu}
+        {items.descricao}
         {''}
         {descriptionExpanded && (
           <LerMais type="button" onClick={toggleDescription}>
@@ -53,11 +52,18 @@ const CardMenu = ({ name, image, descriptionMenu, price, portion }: Props) => {
     )
   }
 
+  const dispatch = useDispatch()
+
+  const addCart = () => {
+    dispatch(open())
+    dispatch(add(items))
+  }
+
   return (
     <>
       <CardContainer>
-        <Image src={image} alt="pizza" />
-        <Title>{name}</Title>
+        <Image src={items.foto} alt={items.nome} />
+        <Title>{items.nome}</Title>
         <Description>{getDescription()}</Description>
         <div className="container">
           <Button type="button" onClick={() => setModal({ isVisible: true })}>
@@ -74,14 +80,14 @@ const CardMenu = ({ name, image, descriptionMenu, price, portion }: Props) => {
             onClick={() => setModal({ isVisible: false })}
           />
           <div>
-            <img className="bigImage" src={image} alt="pizza" />
+            <img className="bigImage" src={items.foto} alt={items.nome} />
           </div>
           <div>
-            <h3>{name}</h3>
-            <p>{descriptionMenu}</p> <br />
-            <p>{portion}</p>
-            <Button type="button" to="/">
-              {`Adicionar ao carrinho - R$ ${price}`}
+            <h3>{items.nome}</h3>
+            <p>{items.descricao}</p> <br />
+            <p>{items.porcao}</p>
+            <Button type="button" onClick={addCart}>
+              {`Adicionar ao carrinho - ${formataPreco(items.preco)}`}
             </Button>
           </div>
         </ModalContent>

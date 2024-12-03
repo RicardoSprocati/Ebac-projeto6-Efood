@@ -1,37 +1,31 @@
-import { useEffect, useState } from 'react'
 import BannerHeader from '../../components/Banner'
 import Cards from '../../components/Cards'
 import HeaderPerfil from '../../components/HeaderPerfil'
-import { Menu, Restaurant } from '../../Home'
+
 import { useParams } from 'react-router-dom'
+import { useGetMenuQuery } from '../../services/api'
 
 const Perfil = () => {
   const { id } = useParams()
 
-  const [menu, setMenu] = useState<Menu[]>([])
-  const [restaurant, setRestaurant] = useState<Restaurant | null>(null)
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const { data: onMenu } = useGetMenuQuery(id!)
 
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((res) => {
-        setMenu(res.cardapio)
-        setRestaurant(res)
-      })
-  }, [id])
+  if (!onMenu) {
+    return <p>Carregando...</p>
+  }
 
   return (
     <>
       <HeaderPerfil />
-      {restaurant && (
-        <BannerHeader
-          title={restaurant.titulo}
-          cover={restaurant.capa}
-          type={restaurant.tipo}
-        />
-      )}
 
-      <Cards menus={menu} />
+      <BannerHeader
+        title={onMenu.titulo}
+        cover={onMenu.capa}
+        type={onMenu.tipo}
+      />
+
+      <Cards id="on-menu" menus={onMenu.cardapio} />
     </>
   )
 }
