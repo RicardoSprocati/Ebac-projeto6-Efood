@@ -3,23 +3,21 @@ import { Body, Container } from './style'
 
 import { useLocation } from 'react-router-dom'
 import CardMenu from '../CardMenu'
-import { Menu, Restaurant } from '../../Home'
+import Loader from '../Loader'
 
 export type Props = {
   restaurants?: Restaurant[]
   menus?: Menu[]
   id?: string
+  isLoading: boolean
 }
 
-export const formataPreco = (preco = 0) => {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(preco)
-}
-
-const Cards = ({ restaurants = [], menus = [], id }: Props) => {
+const Cards = ({ restaurants = [], menus = [], id, isLoading }: Props) => {
   const location = useLocation()
+
+  if (isLoading) {
+    return <Loader />
+  }
 
   return (
     <Body>

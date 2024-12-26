@@ -13,8 +13,8 @@ import close from '../../assets/images/close.svg'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { add, open } from '../store/reducers/cart'
-import { Menu } from '../../Home'
-import { formataPreco } from '../Cards'
+
+import { formataPreco } from '../../utils'
 
 type Props = {
   items: Menu

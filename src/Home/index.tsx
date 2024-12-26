@@ -2,38 +2,23 @@ import Header from '../components/Header'
 import Cards from '../components/Cards'
 
 import { useGetRestaurantesQuery } from '../services/api'
-
-export type Menu = {
-  foto: string
-  preco: number
-  id: number
-  nome: string
-  descricao: string
-  porcao: string
-}
-
-export type Restaurant = {
-  id: number
-  titulo: string
-  descricao: string
-  avaliacao: string
-  capa: string
-  tipo: string
-  destacado: boolean
-  cardapio: Menu[]
-}
+import Loader from '../components/Loader'
 
 const Home = () => {
-  const { data: onRestaurantes } = useGetRestaurantesQuery()
+  const { data: onRestaurantes, isLoading } = useGetRestaurantesQuery()
 
-  if (!onRestaurantes) {
-    return <p>Carregando...</p>
+  if (isLoading) {
+    return <Loader />
   }
 
   return (
     <>
       <Header />
-      <Cards id="on-restaurantes" restaurants={onRestaurantes} />
+      <Cards
+        id="on-restaurantes"
+        restaurants={onRestaurantes}
+        isLoading={isLoading}
+      />
     </>
   )
 }

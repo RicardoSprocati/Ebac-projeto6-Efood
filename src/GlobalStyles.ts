@@ -4,7 +4,8 @@ export const Cores = {
   salmao: '#E66767',
   branco: '#FFFFFF',
   salmaoClaro: '#FFEBD9',
-  fundo: '#fff7f0'
+  fundo: '#fff7f0',
+  black: '#4B4B4B'
 }
 
 export const GlobalStyle = createGlobalStyle`

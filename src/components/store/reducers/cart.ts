@@ -1,14 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Menu } from '../../../Home'
 
 type CartState = {
   isOpen: boolean
   items: Menu[]
+  step: number
 }
 
 const initialState: CartState = {
   isOpen: false,
-  items: []
+  items: [],
+  step: 1
 }
 
 const cartSlice = createSlice({
@@ -32,9 +33,22 @@ const cartSlice = createSlice({
     },
     remove: (state, action: PayloadAction<number>) => {
       state.items = state.items.filter((item) => item.id !== action.payload)
+    },
+    nextStep: (state) => {
+      if (state.step < 4) state.step += 1
+    },
+    prevStep: (state) => {
+      if (state.step > 1) state.step -= 1
+    },
+    setStep: (state, action: PayloadAction<number>) => {
+      state.step = action.payload
+    },
+    clear: (state) => {
+      state.items = []
     }
   }
 })
 
-export const { open, close, add, remove } = cartSlice.actions
+export const { open, close, add, remove, nextStep, prevStep, setStep, clear } =
+  cartSlice.actions
 export default cartSlice.reducer

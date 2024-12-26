@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 import { Cores } from '../../GlobalStyles'
-import { ButtonSubmit } from '../Button/style'
+import { ButtonLink, ButtonSubmit } from '../Button/style'
+
+type InputGroupProps = {
+  maxWidth?: string
+}
 
 export const Overlay = styled.div`
   position: absolute;
@@ -34,6 +38,22 @@ export const SideBar = styled.aside`
   padding: 32px 8px;
 
   ${ButtonSubmit} {
+    background-color: ${Cores.salmaoClaro};
+    color: ${Cores.salmao};
+    line-height: 16px;
+    font-size: 14px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .empty-text {
+    font-size: 14px;
+    line-height: 22px;
+    color: ${Cores.salmaoClaro};
+    text-align: center;
+  }
+
+  ${ButtonLink} {
     background-color: ${Cores.salmaoClaro};
     color: ${Cores.salmao};
     line-height: 16px;
@@ -90,4 +110,63 @@ export const ValorTotal = styled.div`
   line-height: 16px;
   font-size: 14px;
   font-weight: 700;
+`
+export const CheckDelivery = styled.div`
+  color: ${Cores.salmaoClaro};
+  display: block;
+
+  h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+
+  .display-Numbers {
+    display: flex;
+    gap: 34px;
+  }
+
+  .buttons {
+    margin-top: 16px;
+
+    button {
+      margin-bottom: 8px;
+    }
+  }
+
+  p {
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+  }
+`
+
+export const InputGroup = styled.div<InputGroupProps>`
+  label {
+    font-size: 14px;
+    margin-bottom: 8px;
+    display: block;
+    font-weight: bold;
+  }
+
+  input {
+    width: ${(props) => props.maxWidth || '100%'};
+    padding: 8px;
+    background-color: ${Cores.salmaoClaro};
+    color: ${Cores.black};
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 17px;
+    border: none;
+    margin-bottom: 8px;
+
+    &.error1 {
+      border: 2px solid red;
+    }
+
+    &.error2 {
+      border: 2px solid red;
+    }
+  }
 `
