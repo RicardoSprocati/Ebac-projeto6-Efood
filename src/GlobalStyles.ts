@@ -8,6 +8,11 @@ export const Cores = {
   black: '#4B4B4B'
 }
 
+export const Breakpoints = {
+  desktop: '1024px',
+  tablet: '768px'
+}
+
 export const GlobalStyle = createGlobalStyle`
   * {
   margin: 0;

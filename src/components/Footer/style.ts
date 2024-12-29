@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Cores } from '../../GlobalStyles'
+import { Breakpoints, Cores } from '../../GlobalStyles'
 
 export const FooterStyle = styled.footer`
   display: flex;
@@ -14,6 +14,10 @@ export const FooterStyle = styled.footer`
     font-size: 10px;
     max-width: 480px;
     text-align: center;
+
+    @media (max-width: ${Breakpoints.tablet}) {
+      width: 90%;
+    }
   }
 `
 

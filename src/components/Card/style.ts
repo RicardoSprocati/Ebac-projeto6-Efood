@@ -9,7 +9,6 @@ interface ImageProps {
 
 export const ContainerCard = styled.div`
   max-width: 472px;
-  height: 398px;
 
   .container {
     padding: 0 8px 8px;

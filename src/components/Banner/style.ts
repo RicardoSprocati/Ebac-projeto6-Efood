@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { Cores } from '../../GlobalStyles'
+import { Breakpoints, Cores } from '../../GlobalStyles'
 
 export const Banner = styled.div<{ cover: string }>`
   background-image: url(${(props) => props.cover});
@@ -15,6 +15,10 @@ export const Banner = styled.div<{ cover: string }>`
     max-width: 1024px;
     width: 100%;
     color: ${Cores.branco};
+
+    @media (max-width: ${Breakpoints.desktop}) {
+      max-width: 80%;
+    }
   }
 `
 

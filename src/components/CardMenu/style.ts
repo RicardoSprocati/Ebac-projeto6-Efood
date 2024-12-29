@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Cores } from '../../GlobalStyles'
+import { Breakpoints, Cores } from '../../GlobalStyles'
 import { ButtonSubmit } from '../Button/style'
 
 export const CardContainer = styled.div`
@@ -65,6 +65,9 @@ export const Modal = styled.div`
   justify-content: center;
   z-index: 1;
 
+
+  }
+
   &.visivel {
     display: flex;
   }
@@ -89,6 +92,12 @@ export const ModalContent = styled.div`
   display: flex;
   z-index: 1;
   padding: 32px;
+
+  @media (max-width: ${Breakpoints.tablet}) {
+    display: block;
+    height: auto;
+    width: 90%;
+  }
 
   .smallImage {
     width: 16px;

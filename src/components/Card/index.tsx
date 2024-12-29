@@ -12,6 +12,7 @@ import {
   Nota,
   Paragrafo
 } from './style'
+import { Cores } from '../../GlobalStyles'
 
 type Props = {
   title: string
@@ -43,7 +44,11 @@ const Card = ({
       return (
         <>
           {description.slice(0, 243)}...{''}
-          <LerMais type="button" onClick={toggleDescription}>
+          <LerMais
+            style={{ background: Cores.branco, color: Cores.salmao }}
+            type="button"
+            onClick={toggleDescription}
+          >
             Ler mais
           </LerMais>
         </>
@@ -54,7 +59,11 @@ const Card = ({
         {description}
         {''}
         {descriptionExpanded && (
-          <LerMais type="button" onClick={toggleDescription}>
+          <LerMais
+            style={{ background: Cores.branco, color: Cores.salmao }}
+            type="button"
+            onClick={toggleDescription}
+          >
             Ler menos
           </LerMais>
         )}
