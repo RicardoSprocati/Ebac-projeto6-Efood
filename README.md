@@ -24,6 +24,9 @@ Um ecommerce de pratos de comida que conecta você aos melhores restaurantes e m
 
 ---
 
+## Licença
+MIT.
+
 ## Link para o Projeto
 
 O projeto está publicado e pode ser acessado no seguinte endereço:
